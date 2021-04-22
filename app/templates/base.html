@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="{{url_for('static', filename='format.css')}}" />
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <title>{% block title %}{% endblock %} - Jinja Demo</title>
     {% block head %} 
     {% endblock %}
 </head>
-<body>
+<body class="">
     <div>
         <ul>
             <li><a href="{{url_for('home')}}">Home</a></li>

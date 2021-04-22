@@ -3,3 +3,5 @@ Flask-WTF==0.14.3
 
 WTForms==2.3.3
 email_validator==1.1.2
+
+livereload==2.6.3
