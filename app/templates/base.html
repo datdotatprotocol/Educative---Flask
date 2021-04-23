@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html class="h-full">
 <html lang="en">
 <head>
     <link rel="stylesheet" href="{{url_for('static', filename='format.css')}}" />
@@ -7,18 +7,21 @@
     {% block head %} 
     {% endblock %}
 </head>
-<body class="md-4"> 
-    <div>
-        <ul>
-            <li><a href="{{url_for('home')}}">Home</a></li>
-            <li><a href="{{url_for('login')}}">Login</a></li>
-        </ul>
+<body class="h-full w-full flex flex-col justify-center bg-blue-50"> 
+    <div class="w-full flex justify-between bg-white p-5 absolute top-0">
+        <a class="py-1 px-3 font-medium text-blue-900 hover:text-white bg-blue-300 hover:bg-blue-500 rounded-md mr-1" href="{{url_for('home')}}">Home</a>
+        <div class="authentication flex">
+            <a class="py-1 px-3 font-medium text-blue-900 hover:text-white bg-blue-300 hover:bg-blue-500 rounded-md ml-1" href="{{url_for('login')}}">Login</a>
+            <a class="py-1 px-3 font-medium text-blue-900 hover:text-white bg-blue-300 hover:bg-blue-500 rounded-md ml-1" href="{{url_for('signup')}}">Sign Up</a>
+        </div>
     </div>
-    <div id="header"> FORMS DEMO </div>
-    <div id="content">
+    <div class="uppercase text-center mb-10">
+        <div class="text-4xl font-medium text-blue-800">{% block header %}{% endblock %}</div>
+    </div>
+    <div id="content" class="flex flex-col items-center">
         {% block content %}
         {% endblock %}
     </div>
-    <div id="footer"> Copyright © 2019 All Rights Reserved </div>
+    <div id="footer"> Copyright © 2021 All Rights Reserved </div>
 </body>
 </html>
