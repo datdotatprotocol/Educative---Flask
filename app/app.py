@@ -11,10 +11,9 @@ app = Flask(__name__)
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 
-users = {
-    "archie.andrews@email.com": "football4life",
-    "veronica.lodge@email.com": "fashiondiva"
-}
+users = [
+    {"id": 1, "full_name": "Pet Rescue Team", "email": "team@pawsrescue.co", "password": "adminpass"},
+]
 
 @app.route("/")
 def home():
@@ -35,10 +34,10 @@ def login():
     form = LoginForm()
 
     if form.validate_on_submit():
-        for u_email, u_password in users.items():
-            if u_email == form.email.data and u_password == form.password.data:
-                return render_template("login.html", status="confirm", message ="Successfully Logged In")
-        return render_template("login.html", form = form, status="alert", message ="Incorrect Email or Password")
+        for user in users:
+            if user['email'] == form.email.data and user['password'] == form.password.data:
+                return render_template("login.html", status="confirm", message="Successfully Logged In")
+        return render_template("login.html", form = form, status="alert", message="Incorrect Email or Password")
     elif form.errors:
         print(form.errors.items())
         print(form.email.errors)
@@ -49,7 +48,16 @@ def login():
 def signup():
     # Form created with WTForms
     form = SignUpForm()
-    return render_template("register.html", form = form)
+
+    if form.validate_on_submit():
+        new_user = {"id": len(users)+1, "full_name": form.fName.data, "email": form.email.data, "password": form.password.data}
+        print(new_user['email'])
+        for user in users:
+            if user['email'] == new_user['email']:
+                return render_template("signup.html", form = form, status="alert", message="Existed User!")
+        return render_template("signup.html", status="confirm", message="Created account successfully!")
+
+    return render_template("signup.html", form = form)
 
 if __name__ == "__main__":
     server = Server(app.wsgi_app)

@@ -17,8 +17,8 @@ Login Form
   </div>
 
   <div class="form-body bg-gray-50 p-10">
-    {{ form.email(class="w-full bg-white border-2 border-gray-150 p-4 mb-5 rounded", placeholder="Email") }}
-    {{ form.password(class="w-full bg-white border-2 border-gray-150 p-4 mb-5 rounded", placeholder="Password") }}
+    {{ form.email(class="w-full bg-white border-2 border-gray-150 p-4 mb-5 rounded", placeholder=form.email.label.text) }}
+    {{ form.password(class="w-full bg-white border-2 border-gray-150 p-4 mb-5 rounded", placeholder=form.password.label.text) }}
     {{ form.csrf_token }}
     {{ form.submit(class="w-full text-white font-medium uppercase cursor-pointer bg-blue-600 hover:bg-blue-800 mt-2 py-4 rounded") }}
   </div>
