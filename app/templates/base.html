@@ -11,8 +11,12 @@
     <div class="w-full flex justify-between bg-white p-5 absolute top-0">
         <a class="py-1 px-3 font-medium text-blue-900 hover:text-white bg-blue-300 hover:bg-blue-500 rounded-md mr-1" href="{{url_for('home')}}">Home</a>
         <div class="authentication flex">
+            {% if 'user' in session %}
+            <a class="py-1 px-3 font-medium text-blue-900 hover:text-white bg-blue-300 hover:bg-blue-500 rounded-md ml-1" href="{{url_for('logout')}}">Logout</a>
+            {% else %}
             <a class="py-1 px-3 font-medium text-blue-900 hover:text-white bg-blue-300 hover:bg-blue-500 rounded-md ml-1" href="{{url_for('login')}}">Login</a>
             <a class="py-1 px-3 font-medium text-blue-900 hover:text-white bg-blue-300 hover:bg-blue-500 rounded-md ml-1" href="{{url_for('signup')}}">Sign Up</a>
+            {% endif %}
         </div>
     </div>
     <div class="uppercase text-center mb-10">

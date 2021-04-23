@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template
+from flask import session, redirect, url_for
 
 # Import Modules
 from forms import LoginForm, SignUpForm
@@ -22,27 +23,24 @@ def home():
 # Form need to have defined methods
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    # if request.method == "POST":
-    #     email = request.form['email']
-    #     password = request.form['password']
-    #     if email in users and users[email] == password:
-    #         return render_template("login.html", message ="Successfully Logged In")
-    #     return render_template("login.html", message ="Incorrect Email or Password")
-    # return render_template("login.html")
 
     # Form created with WTForms
     form = LoginForm()
 
     if form.validate_on_submit():
-        for user in users:
-            if user['email'] == form.email.data and user['password'] == form.password.data:
-                return render_template("login.html", status="confirm", message="Successfully Logged In")
-        return render_template("login.html", form = form, status="alert", message="Incorrect Email or Password")
-    elif form.errors:
-        print(form.errors.items())
-        print(form.email.errors)
-        print(form.password.errors)
+        user = next((user for user in users if user['email'] == form.email.data and user['password'] == form.password.data), None)
+        if user is None:
+            return render_template("login.html", form = form, status="alert", message="Incorrect Email or Password")
+        else:
+            session['user'] = user
+            return render_template("login.html", status="confirm", message="Successfully Logged In")
     return render_template("login.html", form = form)
+
+@app.route('/logout')
+def logout():
+    if 'user' in session:
+        session.pop('user')
+    return redirect(url_for('home', _scheme='http', _external=True))
 
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
