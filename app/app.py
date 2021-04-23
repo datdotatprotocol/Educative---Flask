@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request
-from flask_wtf import FlaskForm
 
 # Import Modules
 from forms import LoginForm
+from livereload import Server
 
 import os
 
@@ -36,7 +36,7 @@ def login():
     if form.validate_on_submit():
         for u_email, u_password in users.items():
             if u_email == form.email.data and u_password == form.password.data:
-                return render_template("login.html", message ="Successfully Logged In")
+                return render_template("login.html", message ="Successfully Logged I=n")
         return render_template("login.html", form = form, message ="Incorrect Email or Password")
     elif form.errors:
         print(form.errors.items())
