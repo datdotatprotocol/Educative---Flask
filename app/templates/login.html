@@ -34,6 +34,14 @@ Login Form
   </div>
   {% endif %}
 
+  {% if form.email.errors %}
+  <div class="w-1/3 bg-red-200 text-red-700 text-center absolute mt-3 py-3 rounded-lg">
+    {% for error in form.email.errors %}
+      {{ error }}
+    {% endfor %}
+  </div>
+  {% endif %}
+
 </form>
 {% endif %}
 
