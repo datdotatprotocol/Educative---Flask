@@ -7,11 +7,11 @@ WORKDIR /usr/src/app/
 RUN apk add --update py3-pip
 
 # upgrade pip
-RUN pip3 install --upgrade pip3
+RUN pip3 install --upgrade pip
 
 # install Python modules needed by the Python app
 COPY requirements.txt /usr/src/app/
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 # copy files required for the app to run
 COPY ./app /usr/src/app/
