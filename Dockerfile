@@ -1,17 +1,16 @@
 # our base image
-FROM alpine:3.7
+FROM python:3.8-slim
 
 WORKDIR /usr/src/app/
 
 # Install python and pip
-RUN apk add --update py3-pip
-
-# upgrade pip
-RUN pip3 install --upgrade pip
+RUN apt-get update \
+    && apt-get install gcc -y \
+    && apt-get clean
 
 # install Python modules needed by the Python app
 COPY requirements.txt /usr/src/app/
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # copy files required for the app to run
 COPY ./app /usr/src/app/
