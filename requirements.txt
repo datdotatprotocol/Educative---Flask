@@ -5,4 +5,4 @@ Flask-SQLAlchemy==2.5.1
 WTForms==2.3.3
 email_validator==1.1.2
 
-livereload==2.6.3
+livereload==2.5.1

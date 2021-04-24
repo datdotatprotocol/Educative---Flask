@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from flask import session, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
 
 # Import Modules
 from forms import LoginForm, SignUpForm
@@ -11,6 +12,8 @@ app = Flask(__name__)
 
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///authenticate.db'
 
 users = [
     {"id": 1, "full_name": "Pet Rescue Team", "email": "team@pawsrescue.co", "password": "adminpass"},
