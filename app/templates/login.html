@@ -11,16 +11,16 @@ Login Form
 {% block content %}
 
 {% if form %}
-<form class="w-1/3 bg-white shadow-md rounded-lg" action="{{url_for('login')}}" method="POST">
+<form class="w-2/3 bg-white shadow-md rounded-lg" action="{{url_for('login')}}" method="POST">
   <div class="flex justify-center py-6 border-gray-100 border-b-2">
     <span class="text-2xl text-blueGray-800 font-medium uppercase">Welcome back!</span>
   </div>
 
-  <div class="form-body bg-gray-50 p-10">
-    {{ form.email(class="w-full bg-white border-2 border-gray-150 p-4 mb-5 rounded", placeholder=form.email.label.text) }}
-    {{ form.password(class="w-full bg-white border-2 border-gray-150 p-4 mb-5 rounded", placeholder=form.password.label.text) }}
+  <div class="form-body grid grid-rows-3 gap-5 bg-gray-50 p-10">
+    {{ form.email(class="bg-white border-2 border-gray-150 p-4 rounded", placeholder=form.email.label.text) }}
+    {{ form.password(class="bg-white border-2 border-gray-150 p-4 rounded", placeholder=form.password.label.text) }}
     {{ form.csrf_token }}
-    {{ form.submit(class="w-full text-white font-medium uppercase cursor-pointer bg-blue-600 hover:bg-blue-800 mt-2 py-4 rounded") }}
+    {{ form.submit(class="text-white font-medium uppercase cursor-pointer bg-blue-600 hover:bg-blue-800 py-4 rounded") }}
   </div>
 
   <div class="flex justify-between py-6 px-10 border-gray-100 border-t-2">
